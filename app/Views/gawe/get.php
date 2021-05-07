@@ -26,7 +26,7 @@
       </div>
     </div>
   <?php } ?>
-  
+
   <?php if (session()->getFlashdata('error')) { ?>
     <div class="alert alert-danger alert-dismissible show fade">
       <div class="alert-body">
@@ -37,7 +37,7 @@
       </div>
     </div>
   <?php } ?>
-  
+
 
   <div class="section-body">
     <div class="col-12 col-md-12 col-lg-12">
@@ -65,8 +65,15 @@
                       <?= $item->info_gawe ?>
                     </td>
                     <td>
-                      <a href="#" class="btn btn-warning btn-sm"> <i class="fas fa-pencil-alt"></i></a>
-                      <a href="#" class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i></a>
+                      <a href="<?= site_url('gawe/edit/' . $item->id_gawe) ?>" class="btn btn-warning btn-sm"> <i class="fas fa-pencil-alt"></i></a>
+                      <form action="<?= site_url('gawe/del/' . $item->id_gawe) ?>" method="post" class="d-inline" onsubmit="return confirm('Yakin Menghapus')">
+                        <?= csrf_field() ?>
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button class="btn btn-danger btn-sm">
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </form>
+
                     </td>
                   </tr>
                 <?php } ?>
